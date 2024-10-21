@@ -21,24 +21,12 @@ public class WebService implements IWebService {
             try {
                 _requestSemaphore.acquire();
                 Socket clientSocket = _serverSocket.accept();
+                (new WebServiceClientWorker(clientSocket)).run();
 
-                DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
-                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-                String httpRequestRaw = "";
-                String line;
-                while (true) {
-                    line = readFromClient(in);
-                    httpRequestRaw += line;
-                }
-                //System.out.println(httpRequestRaw);
             } catch (Exception e) {
                 System.out.println(e);
             }
         }
-    }
-
-    private String readFromClient(BufferedReader reader) throws IOException {
-        return reader.readLine();
     }
 }
