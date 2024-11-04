@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.Map;
 
 public class WebServiceClientWorker extends Thread {
     private Socket _clientSocket;
@@ -37,7 +38,7 @@ public class WebServiceClientWorker extends Thread {
                         parseHeaders = false;
                     } else {
                         String[] values = line.split(": ");
-                        requestData.Headers.put(values[0], values[1]);
+                        requestData.Headers.put(values[0].toLowerCase(), values[1]);
                     }
                 } else {
                     if (requestData.Content == null)
@@ -45,7 +46,18 @@ public class WebServiceClientWorker extends Thread {
                     requestData.Content += line + "\n";
                 }
             }
-            onHttpRequestReceived(requestData, out);
+            HttpResponseData responseData = onHttpRequestReceived(requestData, out);
+
+            writeStatusCode(out, responseData.StatusCode, responseData.StatusMessage);
+            for( entry : responseData.ResponseHeaders.keySet()) {
+
+            }
+            writeHeader(out, "Content-Type", "text/plain");
+            out.writeBytes("\n");
+
+            out.writeBytes("Test!");
+            out.flush();
+            out.close();
             _clientSocket.close();
         } catch (Exception ex) {
 
@@ -58,9 +70,7 @@ public class WebServiceClientWorker extends Thread {
         }
     }
 
-    private void onRawHttpRequestReceived(String httpRequestRaw, DataOutputStream out) throws IOException {
-
-
+    private HttpResponseData onRawHttpRequestReceived(String httpRequestRaw, DataOutputStream out) throws IOException {
         String method = httpRequestRaw.substring(0, httpRequestRaw.indexOf(" "));
         method = method.toUpperCase();
         String path = httpRequestRaw.substring(httpRequestRaw.indexOf("/"));
@@ -75,17 +85,20 @@ public class WebServiceClientWorker extends Thread {
 
         }
 
-        onHttpRequestReceived(requestData, out);
+        return onHttpRequestReceived(requestData, out);
     }
 
-    private void onHttpRequestReceived(HttpRequestData requestData, DataOutputStream out) throws IOException {
-        writeStatusCode(out, 200, "OK");
-        writeHeader(out, "Content-Type", "text/plain");
-        out.writeBytes("\n");
+    private HttpResponseData onHttpRequestReceived(HttpRequestData requestData, DataOutputStream out) throws IOException {
+        HttpResponseData responseData = new HttpResponseData();
 
-        out.writeBytes("Test!");
-        out.flush();
-        out.close();
+        String userAgent = requestData.Headers.get("user-agent");
+        if (userAgent != null && !userAgent.toLowerCase().contains("firefox")) {
+            responseData.StatusCode = 406;
+            responseData.StatusMessage = "Not Acceptable";
+            return responseData;
+        }
+
+
     }
 
     private void writeStatusCode(DataOutputStream out, int statusCode, String statusMessage) throws IOException {
