@@ -28,14 +28,15 @@ public class WebServiceClientWorker extends Thread {
                 }
             }
             if (httpRequestRaw.equals("")) {
-                System.out.println("HTTP/1.0 400 Bad Request");
+                //System.out.println("HTTP/1.0 400 Bad Request");
+                out.writeChars("HTTP/1.0 400 Bad Request");
             }
 
             //else if (!hasAuthorizationHeader(in)) {
             //      System.out.println("HTTP/1.0 401 Unauthorized - Authorization required.");
             //}
             else if (httpRequestRaw.contains("/404.html")) {
-                System.out.println("HTTP/1.0 404 Not Found");
+                out.writeChars("HTTP/1.0 404 Not Found");
             }
 
             else if (userAgent != null && userAgent.contains("Firefox")) {
@@ -44,6 +45,7 @@ public class WebServiceClientWorker extends Thread {
                 System.out.println(("Content-Length: " + httpRequestRaw.length() + "\r\n"));
                 System.out.println("\r\n");
             } else {
+                out.writeChars("HTTP/1.0 406 Not Acceptable\r\n");
                 System.out.println("HTTP/1.0 406 Not Acceptable\r\n");
                 System.out.println("Content-Type: text/plain\r\n");
                 System.out.println("Content-Length: 0\r\n");
