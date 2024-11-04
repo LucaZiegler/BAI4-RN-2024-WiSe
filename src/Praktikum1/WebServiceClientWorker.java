@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.Map;
+import java.util.Optional;
 
 public class WebServiceClientWorker extends Thread {
     private Socket _clientSocket;
@@ -78,34 +79,22 @@ public class WebServiceClientWorker extends Thread {
         }
     }
 
-    private HttpResponseData onRawHttpRequestReceived(String httpRequestRaw, DataOutputStream out) throws IOException {
-        String method = httpRequestRaw.substring(0, httpRequestRaw.indexOf(" "));
-        method = method.toUpperCase();
-        String path = httpRequestRaw.substring(httpRequestRaw.indexOf("/"));
-        path = path.substring(0, path.indexOf(" "));
-
-        HttpRequestData requestData = new HttpRequestData();
-        requestData.Method = method;
-        requestData.Path = path;
-        requestData.Content = null;
-
-        if (method == "POST") {
-
-        }
-
-        return onHttpRequestReceived(requestData, out);
-    }
-
     private HttpResponseData onHttpRequestReceived(HttpRequestData requestData, DataOutputStream out) throws IOException {
+        /* INIT DEFAULT CASE */
         HttpResponseData responseData = new HttpResponseData();
         responseData.StatusCode = 400;
         responseData.StatusMessage = "Bad request";
+        /* INIT DEFAULT CASE */
 
+        /* USER AGENT */
         String userAgent = requestData.Headers.get("user-agent");
         if (userAgent != null && !userAgent.toLowerCase().contains("firefox")) {
             return NotAcceptable();
         }
+        /* USER AGENT */
 
+        /* AUTHENTIFICATION */
+        boolean authSuccess = false;
         Path path = Paths.get(".htusers");
         if (Files.exists(path)) {
             if (!requestData.Headers.containsKey("authorization")) {
@@ -122,17 +111,51 @@ public class WebServiceClientWorker extends Thread {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     if (line.equals(credentials)) {
-                        return Ok();
+                        authSuccess = true;
+                        break;
                     }
                 }
                 reader.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return Unauthorized();
+            if (!authSuccess)
+                return Unauthorized();
         }
+        /* AUTHENTIFICATION */
 
+        String resource = requestData.Path.replaceFirst("/", "");
+        if (resource.equals(""))
+            resource = "index.html";
+        path = Paths.get(resource);
+        if (Files.exists(path)) {
+            InputStream fileIn = new FileInputStream(path.toAbsolutePath().toFile());
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int len;
+            while ((len = fileIn.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, len);
+            }
+            responseData.ResponseContent = outputStream.toString(StandardCharsets.UTF_8);
+            String fileExt = fileExtension(resource);
+            if (fileExt.equals(".gif")) {
+                responseData.ResponseHeaders.put("Content-Type", "image/gif");
+            } else if (fileExt.equals(".html")) {
+                responseData.ResponseHeaders.put("Content-Type", "text/html; charset=utf-8");
+            } else if (fileExt.equals(".jpg") || fileExt.equals(".jpeg")) {
+                responseData.ResponseHeaders.put("Content-Type", "image/jpg");
+            }
+            responseData.StatusCode = 200;
+        } else {
+            return NotFound();
+        }
         return responseData;
+    }
+
+    public static String fileExtension(String fileName) {
+        return Optional.of(fileName.lastIndexOf(".")).filter(i -> i >= 0)
+                .filter(i -> i > fileName.lastIndexOf(File.separator))
+                .map(fileName::substring).orElse("");
     }
 
     private HttpResponseData Ok() {
@@ -140,7 +163,7 @@ public class WebServiceClientWorker extends Thread {
         responseData.StatusCode = 200;
         responseData.StatusMessage = "Ok";
         responseData.ResponseContent = "OK";
-        responseData.ResponseHeaders.put("Content-Type", "text/plain");
+        //responseData.ResponseHeaders.put("Content-Type", "text/html; charset=utf-8");
         return responseData;
     }
 
@@ -148,6 +171,13 @@ public class WebServiceClientWorker extends Thread {
         HttpResponseData responseData = new HttpResponseData();
         responseData.StatusCode = 406;
         responseData.StatusMessage = "Not Acceptable";
+        return responseData;
+    }
+
+    private HttpResponseData NotFound() {
+        HttpResponseData responseData = new HttpResponseData();
+        responseData.StatusCode = 404;
+        responseData.StatusMessage = "Not Found";
         return responseData;
     }
 

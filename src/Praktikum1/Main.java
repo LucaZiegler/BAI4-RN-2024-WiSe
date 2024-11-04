@@ -6,7 +6,7 @@ import java.io.IOException;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws IOException {
-        IWebService webService = new WebService(8080,3);
+        IWebService webService = new WebService(8080,5);
         webService.Run();
     }
 }
