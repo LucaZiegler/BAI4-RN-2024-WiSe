@@ -18,49 +18,82 @@ public class WebServiceClientWorker extends Thread {
             DataOutputStream out = new DataOutputStream(_clientSocket.getOutputStream());
             BufferedReader in = new BufferedReader(new InputStreamReader(_clientSocket.getInputStream()));
 
-            String httpRequestRaw = "";
+            //String httpRequestRaw = "";
             String line;
-            String userAgent = null;
+            HttpRequestData requestData = new HttpRequestData();
+            boolean parseFirstLine = true;
+            boolean parseHeaders = false;
             while (!(line = readFromClient(in)).isEmpty()) {
-                httpRequestRaw += line + "\n";
-                if (line.startsWith("User-Agent")) {
-                    userAgent = line;
+                if (parseFirstLine) {
+                    String[] values = line.split(" ");
+                    requestData.Method = values[0];
+                    requestData.Path = values[1];
+                    requestData.Version = values[2];
+
+                    parseFirstLine = false;
+                    parseHeaders = true;
+                } else if (parseHeaders) {
+                    if (line == "") {
+                        parseHeaders = false;
+                    } else {
+                        String[] values = line.split(": ");
+                        requestData.Headers.put(values[0], values[1]);
+                    }
+                } else {
+                    if (requestData.Content == null)
+                        requestData.Content = "";
+                    requestData.Content += line + "\n";
                 }
             }
-            if (httpRequestRaw.equals("")) {
-                //System.out.println("HTTP/1.0 400 Bad Request");
-                out.writeChars("HTTP/1.0 400 Bad Request");
-            }
-
-            //else if (!hasAuthorizationHeader(in)) {
-            //      System.out.println("HTTP/1.0 401 Unauthorized - Authorization required.");
-            //}
-            else if (httpRequestRaw.contains("/404.html")) {
-                out.writeChars("HTTP/1.0 404 Not Found");
-            }
-
-            else if (userAgent != null && userAgent.contains("Firefox")) {
-                System.out.println("HTTP/1.0 200 OK\r\n");
-                System.out.println("Content-Type: text/plain\r\n");
-                System.out.println(("Content-Length: " + httpRequestRaw.length() + "\r\n"));
-                System.out.println("\r\n");
-            } else {
-                out.writeChars("HTTP/1.0 406 Not Acceptable\r\n");
-                System.out.println("HTTP/1.0 406 Not Acceptable\r\n");
-                System.out.println("Content-Type: text/plain\r\n");
-                System.out.println("Content-Length: 0\r\n");
-                System.out.println("\r\n");
-            }
-
+            onHttpRequestReceived(requestData, out);
+            _clientSocket.close();
         } catch (Exception ex) {
 
-        }finally {
+        } finally {
             try {
                 _clientSocket.close();
             } catch (IOException e) {
                 // Ignored
             }
         }
+    }
+
+    private void onRawHttpRequestReceived(String httpRequestRaw, DataOutputStream out) throws IOException {
+
+
+        String method = httpRequestRaw.substring(0, httpRequestRaw.indexOf(" "));
+        method = method.toUpperCase();
+        String path = httpRequestRaw.substring(httpRequestRaw.indexOf("/"));
+        path = path.substring(0, path.indexOf(" "));
+
+        HttpRequestData requestData = new HttpRequestData();
+        requestData.Method = method;
+        requestData.Path = path;
+        requestData.Content = null;
+
+        if (method == "POST") {
+
+        }
+
+        onHttpRequestReceived(requestData, out);
+    }
+
+    private void onHttpRequestReceived(HttpRequestData requestData, DataOutputStream out) throws IOException {
+        writeStatusCode(out, 200, "OK");
+        writeHeader(out, "Content-Type", "text/plain");
+        out.writeBytes("\n");
+
+        out.writeBytes("Test!");
+        out.flush();
+        out.close();
+    }
+
+    private void writeStatusCode(DataOutputStream out, int statusCode, String statusMessage) throws IOException {
+        out.writeBytes("HTTP/1.0 " + statusCode + " " + statusMessage + "\n");
+    }
+
+    private void writeHeader(DataOutputStream out, String key, String value) throws IOException {
+        out.writeBytes(key + ": " + value + "\n");
     }
 
     private String readFromClient(BufferedReader reader) throws IOException {
