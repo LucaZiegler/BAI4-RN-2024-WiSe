@@ -57,13 +57,13 @@ public class WebServiceClientWorker extends Thread {
                 writeHeader(out, key, responseData.ResponseHeaders.get(key));
             }
             if (responseData.ResponseContent != null) {
-                int contentLength = responseData.ResponseContent.getBytes(StandardCharsets.UTF_8).length;
+                int contentLength = responseData.ResponseContent.length;
                 writeHeader(out, "Content-Length", contentLength);
             }
             out.writeBytes("\n");
 
             if (responseData.ResponseContent != null) {
-                out.writeBytes(responseData.ResponseContent);
+                out.write(responseData.ResponseContent);
             }
             out.flush();
             out.close();
@@ -136,7 +136,7 @@ public class WebServiceClientWorker extends Thread {
             while ((len = fileIn.read(buffer)) > 0) {
                 outputStream.write(buffer, 0, len);
             }
-            responseData.ResponseContent = outputStream.toString(StandardCharsets.UTF_8);
+            responseData.ResponseContent = outputStream.toByteArray();
             String fileExt = fileExtension(resource);
             if (fileExt.equals(".gif")) {
                 responseData.ResponseHeaders.put("Content-Type", "image/gif");
@@ -144,6 +144,8 @@ public class WebServiceClientWorker extends Thread {
                 responseData.ResponseHeaders.put("Content-Type", "text/html; charset=utf-8");
             } else if (fileExt.equals(".jpg") || fileExt.equals(".jpeg")) {
                 responseData.ResponseHeaders.put("Content-Type", "image/jpg");
+            } else if (fileExt.equals(".pdf")) {
+                responseData.ResponseHeaders.put("Content-Type", "application/pdf");
             }
             responseData.StatusCode = 200;
         } else {
@@ -158,14 +160,6 @@ public class WebServiceClientWorker extends Thread {
                 .map(fileName::substring).orElse("");
     }
 
-    private HttpResponseData Ok() {
-        HttpResponseData responseData = new HttpResponseData();
-        responseData.StatusCode = 200;
-        responseData.StatusMessage = "Ok";
-        responseData.ResponseContent = "OK";
-        //responseData.ResponseHeaders.put("Content-Type", "text/html; charset=utf-8");
-        return responseData;
-    }
 
     private HttpResponseData NotAcceptable() {
         HttpResponseData responseData = new HttpResponseData();

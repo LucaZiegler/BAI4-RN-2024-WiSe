@@ -22,7 +22,7 @@ public class WebService implements IWebService {
                 _requestSemaphore.acquire();
                 Socket clientSocket = _serverSocket.accept();
                 (new WebServiceClientWorker(clientSocket)).run();
-
+                _requestSemaphore.release();
 
             } catch (Exception e) {
                 System.out.println(e);

@@ -8,5 +8,5 @@ public class HttpResponseData {
     public int StatusCode;
     public String StatusMessage;
     public HashMap<String,String> ResponseHeaders = new HashMap<String,String>();
-    public String ResponseContent;
+    public byte[] ResponseContent;
 }
