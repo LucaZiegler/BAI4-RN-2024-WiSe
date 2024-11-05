@@ -19,6 +19,8 @@ public class WebServiceClientWorker extends Thread {
 
     public void run() {
         try {
+            System.out.println();
+
             DataOutputStream out = new DataOutputStream(_clientSocket.getOutputStream());
             BufferedReader in = new BufferedReader(new InputStreamReader(_clientSocket.getInputStream()));
 
@@ -50,6 +52,7 @@ public class WebServiceClientWorker extends Thread {
                     requestData.Content += line + "\n";
                 }
             }
+            System.out.println();
             HttpResponseData responseData = onHttpRequestReceived(requestData, out);
 
             writeStatusCode(out, responseData.StatusCode, responseData.StatusMessage);
@@ -95,7 +98,7 @@ public class WebServiceClientWorker extends Thread {
 
         /* AUTHENTIFICATION */
         boolean authSuccess = false;
-        Path path = Paths.get(".htusers");
+        Path path = Paths.get(".htuser");
         if (Files.exists(path)) {
             if (!requestData.Headers.containsKey("authorization")) {
                 return Unauthorized();
@@ -107,10 +110,10 @@ public class WebServiceClientWorker extends Thread {
             String credentials = new String(Base64.getDecoder().decode(authData[1]));
 
             try {
-                BufferedReader reader = new BufferedReader(new FileReader(".htusers"));
+                BufferedReader reader = new BufferedReader(new FileReader(".htuser"));
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    if (line.equals(credentials)) {
+                    if (line.length() > 0 && line.equals(credentials)) {
                         authSuccess = true;
                         break;
                     }
@@ -184,11 +187,16 @@ public class WebServiceClientWorker extends Thread {
     }
 
     private void writeStatusCode(DataOutputStream out, int statusCode, String statusMessage) throws IOException {
-        out.writeBytes("HTTP/1.0 " + statusCode + " " + statusMessage + "\n");
+        writeLine(out,"HTTP/1.0 " + statusCode + " " + statusMessage);
     }
 
     private void writeHeader(DataOutputStream out, String key, Object value) throws IOException {
-        out.writeBytes(key + ": " + value + "\n");
+        writeLine(out, key + ": " + value);
+    }
+
+    private void writeLine(DataOutputStream out, String val) throws IOException {
+        System.out.println(val);
+        out.writeBytes(val + "\r\n");
     }
 
     private String readFromClient(BufferedReader reader) throws IOException {
