@@ -1,4 +1,4 @@
-package Praktikum2;
+package Praktikum_2;
 
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
@@ -20,6 +20,7 @@ public class MailFile {
         FileReader reader = new FileReader(file);
         Properties config = new Properties();
         config.load(reader);
+
 
         String hostname = config.getProperty("SMTP_ADDRESS");
         String senderAddress = config.getProperty("SENDER_ADDRESS");
