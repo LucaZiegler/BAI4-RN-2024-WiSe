@@ -1,18 +1,33 @@
+package Praktikum2;
+
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
+import java.util.Objects;
 import java.util.Properties;
 
 public class MailFile {
     private static final String CRLF = "\r\n"; // Carriage Return + Line Feed
 
     public static void main(String[] args) throws IOException {
-        FileReader reader = new FileReader("MailFile.ini");
+
+        String recipient = args[0];
+        String filePath = args[1];
+
+        ClassLoader classloader = MailFile.class.getClassLoader();
+        File file = new File(Objects.requireNonNull(classloader.getResource("MailFile.ini")).getFile());
+
+        FileReader reader = new FileReader(file);
         Properties config = new Properties();
         config.load(reader);
 
         String hostname = config.getProperty("SMTP_ADDRESS");
+        String senderAddress = config.getProperty("SENDER_ADDRESS");
+        String userAccount = config.getProperty("USER_ACCOUNT");
+        String password = config.getProperty("PASSWORD");
         int port = Integer.parseInt(config.getProperty("SMTP_PORT"));
+        String subject = config.getProperty("SUBJECT");
+        String body = config.getProperty("BODY");
 
         SSLSocketFactory factory = (SSLSocketFactory)SSLSocketFactory.getDefault();
         SSLSocket socket = (SSLSocket)factory.createSocket(hostname, port);
@@ -26,7 +41,7 @@ public class MailFile {
             System.out.println("Service not ready or wrong server!");
             return;
         }
-        String userAccount = config.getProperty("USER_ACCOUNT");
+
         sendAndPrintInConsole(outToServer, "EHLO localhost"); // send status line
 
         // The format for multiline replies requires that every line, except the last, begin with the reply code,
