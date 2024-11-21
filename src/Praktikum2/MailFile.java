@@ -3,6 +3,7 @@ package Praktikum2;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
+import java.util.Base64;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -35,6 +36,7 @@ public class MailFile {
 
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         DataOutputStream outToServer = new DataOutputStream(socket.getOutputStream());
+
         String domainLine = receiveAndPrintInConsole(inFromServer);
         //System.out.println(domainLine);
         String[] domainLineParsed = domainLine.split(" "); // {code, domain, rest}
@@ -53,7 +55,18 @@ public class MailFile {
         while(replyLine.charAt(3) == '-') {
             replyLine = receiveAndPrintInConsole(inFromServer);
         }
-        sendAndPrintInConsole(outToServer, " "); // TODO: add AUTH
+
+        // Authenticate using AUTH LOGIN
+        sendAndPrintInConsole(outToServer, "AUTH LOGIN");
+        receiveAndPrintInConsole(inFromServer); // Server prompts for username
+
+        // Send Base64-encoded username
+        sendAndPrintInConsole(outToServer, Base64.getEncoder().encodeToString(userAccount.getBytes()));
+        receiveAndPrintInConsole(inFromServer);
+
+        // Send Base64-encoded password
+        sendAndPrintInConsole(outToServer, Base64.getEncoder().encodeToString(password.getBytes()));
+        String authResponse = receiveAndPrintInConsole(inFromServer);
     }
 
     public static void sendAndPrintInConsole(DataOutputStream outToServer, String line) throws IOException {
