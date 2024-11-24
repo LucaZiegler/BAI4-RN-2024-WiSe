@@ -12,11 +12,10 @@ public class MailFile {
 
     public static void main(String[] args) throws IOException {
 
-        String recipient = args[0];
-        String filePath = args[1];
+        //String recipient = args[0]; // uncomment only when running the program with this args, otherwise error
+        //String filePath = args[1];
 
-        ClassLoader classloader = MailFile.class.getClassLoader();
-        File file = new File(Objects.requireNonNull(classloader.getResource("MailFile.ini")).getFile());
+        File file = new File("MailFile.ini");
 
         FileReader reader = new FileReader(file);
         Properties config = new Properties();
