@@ -12,8 +12,8 @@ public class MailFile {
 
     public static void main(String[] args) throws IOException {
 
-        //String recipient = args[0]; // uncomment only when running the program with this args, otherwise error
-        //String filePath = args[1];
+        String recipient = args[0]; // uncomment only when running the program with this args, otherwise error
+        String filePath = args[1];
 
         File file = new File("MailFile.ini");
 
@@ -66,6 +66,35 @@ public class MailFile {
         // Send Base64-encoded password
         sendAndPrintInConsole(outToServer, Base64.getEncoder().encodeToString(password.getBytes()));
         String authResponse = receiveAndPrintInConsole(inFromServer);
+
+        // pass sender via SMTP
+        sendAndPrintInConsole(outToServer, "MAIL FROM:<" + senderAddress + ">");
+        receiveAndPrintInConsole(inFromServer);
+
+        // pass recipient via SMTP
+        sendAndPrintInConsole(outToServer, "RCPT TO:<" + recipient + ">");
+        receiveAndPrintInConsole(inFromServer);
+
+        // pass email text via SMTP
+        sendAndPrintInConsole(outToServer, "DATA");
+        receiveAndPrintInConsole(inFromServer);
+
+        // Email headers and body
+        outToServer.writeBytes("From: " + senderAddress + CRLF);
+        outToServer.writeBytes("To: " + recipient + CRLF);
+        outToServer.writeBytes("Subject: " + subject + CRLF);
+        outToServer.writeBytes(CRLF);
+        outToServer.writeBytes(body + CRLF); // Email body
+        outToServer.writeBytes("." + CRLF); // End of email content
+        System.out.println("C: .");
+
+        // Server response to email content
+        receiveAndPrintInConsole(inFromServer);
+
+        // Quit the session
+        sendAndPrintInConsole(outToServer, "QUIT");
+        receiveAndPrintInConsole(inFromServer);
+
     }
 
     public static void sendAndPrintInConsole(DataOutputStream outToServer, String line) throws IOException {
