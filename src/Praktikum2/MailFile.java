@@ -15,23 +15,12 @@ public class MailFile {
         String recipient = args[0]; // uncomment only when running the program with this args, otherwise error
         String filePath = args[1];
 
-        File file = new File("MailFile.ini");
-
-        FileReader reader = new FileReader(file);
-        Properties config = new Properties();
-        config.load(reader);
+        Config config = LoadConfig("MailFile.ini");
 
 
-        String hostname = config.getProperty("SMTP_ADDRESS");
-        String senderAddress = config.getProperty("SENDER_ADDRESS");
-        String userAccount = config.getProperty("USER_ACCOUNT");
-        String password = config.getProperty("PASSWORD");
-        int port = Integer.parseInt(config.getProperty("SMTP_PORT"));
-        String subject = config.getProperty("SUBJECT");
-        String body = config.getProperty("BODY");
 
         SSLSocketFactory factory = (SSLSocketFactory)SSLSocketFactory.getDefault();
-        SSLSocket socket = (SSLSocket)factory.createSocket(hostname, port);
+        SSLSocket socket = (SSLSocket)factory.createSocket(config.Hostname, config.Port);
 
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         DataOutputStream outToServer = new DataOutputStream(socket.getOutputStream());
@@ -39,7 +28,7 @@ public class MailFile {
         String domainLine = receiveAndPrintInConsole(inFromServer);
         //System.out.println(domainLine);
         String[] domainLineParsed = domainLine.split(" "); // {code, domain, rest}
-        if (Integer.parseInt(domainLineParsed[0]) != 220 || !domainLineParsed[1].equals(hostname)) {
+        if (Integer.parseInt(domainLineParsed[0]) != 220 || !domainLineParsed[1].equals(config.Hostname)) {
             System.out.println("Service not ready or wrong server!");
             return;
         }
@@ -60,15 +49,15 @@ public class MailFile {
         receiveAndPrintInConsole(inFromServer); // Server prompts for username
 
         // Send Base64-encoded username
-        sendAndPrintInConsole(outToServer, Base64.getEncoder().encodeToString(userAccount.getBytes()));
+        sendAndPrintInConsole(outToServer, Base64.getEncoder().encodeToString(config.UserAccount.getBytes()));
         receiveAndPrintInConsole(inFromServer);
 
         // Send Base64-encoded password
-        sendAndPrintInConsole(outToServer, Base64.getEncoder().encodeToString(password.getBytes()));
+        sendAndPrintInConsole(outToServer, Base64.getEncoder().encodeToString(config.Password.getBytes()));
         String authResponse = receiveAndPrintInConsole(inFromServer);
 
         // pass sender via SMTP
-        sendAndPrintInConsole(outToServer, "MAIL FROM:<" + senderAddress + ">");
+        sendAndPrintInConsole(outToServer, "MAIL FROM:<" + config.SenderAddress + ">");
         receiveAndPrintInConsole(inFromServer);
 
         // pass recipient via SMTP
@@ -80,21 +69,60 @@ public class MailFile {
         receiveAndPrintInConsole(inFromServer);
 
         // Email headers and body
-        outToServer.writeBytes("From: " + senderAddress + CRLF);
-        outToServer.writeBytes("To: " + recipient + CRLF);
-        outToServer.writeBytes("Subject: " + subject + CRLF);
-        outToServer.writeBytes(CRLF);
-        outToServer.writeBytes(body + CRLF); // Email body
-        outToServer.writeBytes("." + CRLF); // End of email content
-        System.out.println("C: .");
+        sendAndPrintInConsole(outToServer,"From: " + config.SenderAddress);
+        sendAndPrintInConsole(outToServer,"To: " + recipient);
+        sendAndPrintInConsole(outToServer,"Subject: " + config.Subject);
+        sendAndPrintInConsole(outToServer, "MIME-Version: 1.0");
+        sendAndPrintInConsole(outToServer, "Content-Type: multipart/mixed; boundary=\"boundaryHAW\"");
+        sendAndPrintInConsole(outToServer,null); // Sends CRLF
+        //outToServer.writeBytes(CRLF);
 
-        // Server response to email content
+        sendAndPrintInConsole(outToServer, "--boundaryHAW");
+        sendAndPrintInConsole(outToServer, "Content-Type: text/plain; charset=\"utf-8\"");
+        sendAndPrintInConsole(outToServer, "Content-Transfer-Encoding: 7bit");
+        sendAndPrintInConsole(outToServer, "");
+        sendAndPrintInConsole(outToServer, config.Body);
+        sendAndPrintInConsole(outToServer, "");
+
+        // File attachment
+        File file = new File(filePath);
+        String fileName = file.getName();
+        String encodedFile = encodeFileToBase64(file);
+
+        sendAndPrintInConsole(outToServer, "--boundaryHAW");
+        sendAndPrintInConsole(outToServer, "Content-Type: application/octet-stream; name=\"" + fileName + "\"");
+        sendAndPrintInConsole(outToServer, "Content-Transfer-Encoding: base64");
+        sendAndPrintInConsole(outToServer, "Content-Disposition: attachment; filename=\"" + fileName + "\"");
+        sendAndPrintInConsole(outToServer, "");
+        sendAndPrintInConsole(outToServer, encodedFile);
+        sendAndPrintInConsole(outToServer, "");
+
+        // End of email
+        sendAndPrintInConsole(outToServer, "--boundaryHAW--");
+        sendAndPrintInConsole(outToServer, ".");
         receiveAndPrintInConsole(inFromServer);
 
-        // Quit the session
         sendAndPrintInConsole(outToServer, "QUIT");
         receiveAndPrintInConsole(inFromServer);
 
+    }
+
+    private static Config LoadConfig(String path) throws IOException {
+        File file = new File(path);
+
+        FileReader reader = new FileReader(file);
+        Properties properties = new Properties();
+        properties.load(reader);
+
+        Config config = new Config();
+        config.Hostname = properties.getProperty("SMTP_ADDRESS");
+        config.SenderAddress = properties.getProperty("SENDER_ADDRESS");
+        config.UserAccount = properties.getProperty("USER_ACCOUNT");
+        config.Password = properties.getProperty("PASSWORD");
+        config.Port = Integer.parseInt(properties.getProperty("SMTP_PORT"));
+        config.Subject = properties.getProperty("SUBJECT");
+        config.Body = properties.getProperty("BODY");
+        return config;
     }
 
     public static void sendAndPrintInConsole(DataOutputStream outToServer, String line) throws IOException {
@@ -106,5 +134,17 @@ public class MailFile {
         String line = inFromServer.readLine();
         System.out.println("S: " + line);
         return line;
+    }
+
+    private static String encodeFileToBase64(File file) throws IOException {
+        try (FileInputStream fis = new FileInputStream(file);
+             ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = fis.read(buffer)) != -1) {
+                baos.write(buffer, 0, bytesRead);
+            }
+            return Base64.getEncoder().encodeToString(baos.toByteArray());
+        }
     }
 }

@@ -2,7 +2,7 @@
   <configuration default="false" name="RN_Praktikum2" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="Praktikum2.MailFile" />
     <module name="BAI4-RN-2024-WiSe" />
-    <option name="PROGRAM_PARAMETERS" value="alexander.jakobs@haw-hamburg.de MailFile.ini" />
+    <option name="PROGRAM_PARAMETERS" value="luca.ziegler@haw-hamburg.de MailFile.ini" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
