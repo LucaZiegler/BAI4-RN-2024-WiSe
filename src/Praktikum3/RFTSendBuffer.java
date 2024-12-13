@@ -1,4 +1,4 @@
-/* RFTSendBuffer.java
+package Praktikum3;/* RFTSendBuffer.java
  Version 1.0
  Praktikum Rechnernetze HAW Hamburg
  Autor: M. Huebner

@@ -1,4 +1,4 @@
-/* RFTpacket.java
+package Praktikum3;/* RFTpacket.java
  Version 1.1
  Praktikum Rechnernetze HAW Hamburg
  Autor: M. Huebner

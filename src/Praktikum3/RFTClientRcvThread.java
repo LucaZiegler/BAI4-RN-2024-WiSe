@@ -1,4 +1,4 @@
-
+package Praktikum3;
 /* RFTClientRcvThread.java
  Version 1.0
  Praktikum Rechnernetze HAW Hamburg
