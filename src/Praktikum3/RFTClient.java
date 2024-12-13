@@ -27,13 +27,18 @@ public class RFTClient extends Thread {
 	// Current timeoutInterval in nanoseconds
 	// TCP start value: 1 second [RFC 6298]
 	public long timeoutInterval = 1000000000L;
+	// TCP Timeoutbestimmung
 	private double estimatedRTT = -1;
 	private double deviation = 0;
-	
-	private long sampleRTT_Sum = 0;
+
+	// Stats
+	private long tSampleRTT = 0;
+	private long sampleRTT_sum = 0;
 	private long measuredRTTs = 0;
 
 	public DatagramSocket clientSocket;
+
+	// Sende Puffer
 	public RFTSendBuffer sendBuf;
 
 	private long nextSeqNum = 0;
@@ -175,7 +180,7 @@ public class RFTClient extends Thread {
 	 * Implementation specific task performed at timeout
 	 */
 	public void timeoutTask() {
-     
+
      /* ToDo */
      
 	}
@@ -183,8 +188,11 @@ public class RFTClient extends Thread {
 	public void computeTimeoutInterval(long sampleRTT) {
       /* Computes the current timeoutInterval (in nanoseconds) 
        * Result: Variable timeoutInterval */
-
-      /* ToDo */
+		tSampleRTT += sampleRTT;
+		if (estimatedRTT == -1) estimatedRTT = sampleRTT;
+		this.estimatedRTT = (long) ((1 - X) * this.estimatedRTT + (X * sampleRTT));
+		this.deviation = (long) ((1 - X) * this.deviation + (X * Math.abs(sampleRTT - this.estimatedRTT)));
+		this.timeoutInterval = (long) (this.estimatedRTT + (4 * this.deviation));
       
 	}
 
