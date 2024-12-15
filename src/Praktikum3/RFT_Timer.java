@@ -38,7 +38,7 @@ public class RFT_Timer extends Thread {
 			try {
 				// Timer State: Stopped
 				while (!isRunning) {
-					//myRFTC.testOut(" RFT_Timer stopped!");
+					myRFTC.testOut(" RFT_Timer stopped!");
 					wait();
 				}
 				isRestarted = true;
@@ -49,7 +49,7 @@ public class RFT_Timer extends Thread {
 					isRestarted = false;
 					long millis = delay / 1000000L;
 					int nanos = (int) (delay % 1000000L);
-					//myRFTC.testOut("------ Going to wait for " + millis + "," + nanos + "  isRunning: " + isRunning);
+					myRFTC.testOut("------ Going to wait for " + millis + "," + nanos + "  isRunning: " + isRunning);
 					wait(millis, nanos);
 
 					/* Timeout: Perform task if not cancelled */
@@ -93,7 +93,7 @@ public class RFT_Timer extends Thread {
 		if (isRunning) {
 			taskIsCancelled = true;
 			notify();
-			//myRFTC.testOut("------------------ RFT_Timer cancelled!");
+			myRFTC.testOut("------------------ RFT_Timer cancelled!");
 		}
 	}
 

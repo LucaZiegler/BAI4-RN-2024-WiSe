@@ -180,9 +180,24 @@ public class RFTClient extends Thread {
 	 * Implementation specific task performed at timeout
 	 */
 	public void timeoutTask() {
+		// Identify the packet at the front of the send buffer
+		RFTpacket timeoutPacket = sendBuf.getSendbasePacket();
 
-     /* ToDo */
-     
+		if (timeoutPacket != null) {
+			long seqnum = timeoutPacket.getSeqNum();
+			// Log the timeout event
+			testOut("Timeout for packet " + seqnum);
+
+			// Resend the packet
+			sendPacket(timeoutPacket, true);
+
+			// Restart the timer
+			rft_timer.startTimer(timeoutInterval, false);
+		}
+		else{
+			rft_timer.cancelTimer();
+		}
+
 	}
 
 	public void computeTimeoutInterval(long sampleRTT) {
