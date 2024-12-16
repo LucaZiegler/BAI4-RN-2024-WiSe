@@ -212,7 +212,7 @@ public class RFTClient extends Thread {
         double sampleRTTAverage = (double) sampleRTTSum / sampleRTTCount; // Folie 65: SampleRTT ändert sich dynamisch,
         // RTT sollte jedoch sich nur langsam ändern -> Benutzung mehrerer aktueller Messungen,
         // nicht nur den letzten Wert von SampleRTT
-        if (estimatedRTT == -1) estimatedRTT = sampleRTTAverage; // = sampleRTT
+        if (estimatedRTT == -1) estimatedRTT = 4 * sampleRTTAverage; // = 4 Mal sampleRTT
         estimatedRTT = ((1 - X) * estimatedRTT + (X * sampleRTTAverage));
         deviation = ((1 - X) * deviation + (X * Math.abs(sampleRTTAverage - estimatedRTT)));
         timeoutInterval = (long) (estimatedRTT + (4 * deviation));
