@@ -4,7 +4,6 @@ import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.util.Base64;
-import java.util.Objects;
 import java.util.Properties;
 
 public class MailFile {
@@ -17,10 +16,8 @@ public class MailFile {
 
         Config config = LoadConfig("MailFile.ini");
 
-
-
-        SSLSocketFactory factory = (SSLSocketFactory)SSLSocketFactory.getDefault();
-        SSLSocket socket = (SSLSocket)factory.createSocket(config.Hostname, config.Port);
+        SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+        SSLSocket socket = (SSLSocket) factory.createSocket(config.hostname, config.port);
 
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         DataOutputStream outToServer = new DataOutputStream(socket.getOutputStream());
@@ -28,7 +25,7 @@ public class MailFile {
         String domainLine = receiveAndPrintInConsole(inFromServer);
         //System.out.println(domainLine);
         String[] domainLineParsed = domainLine.split(" "); // {code, domain, rest}
-        if (Integer.parseInt(domainLineParsed[0]) != 220 || !domainLineParsed[1].equals(config.Hostname)) {
+        if (Integer.parseInt(domainLineParsed[0]) != 220 || !domainLineParsed[1].equals(config.hostname)) {
             System.out.println("Service not ready or wrong server!");
             return;
         }
@@ -40,24 +37,26 @@ public class MailFile {
         // with the reply code, followed immediately by <SP>, optionally some text, and <CRLF>.
         // https://datatracker.ietf.org/doc/html/rfc5321#section-4.2.1
         String replyLine = receiveAndPrintInConsole(inFromServer);
-        while(replyLine.charAt(3) == '-') {
+        while (replyLine.charAt(3) == '-') {
             replyLine = receiveAndPrintInConsole(inFromServer);
         }
+
+        //inFromServer.ready();
 
         // Authenticate using AUTH LOGIN
         sendAndPrintInConsole(outToServer, "AUTH LOGIN");
         receiveAndPrintInConsole(inFromServer); // Server prompts for username
 
         // Send Base64-encoded username
-        sendAndPrintInConsole(outToServer, Base64.getEncoder().encodeToString(config.UserAccount.getBytes()));
+        sendAndPrintInConsole(outToServer, Base64.getEncoder().encodeToString(config.userAccount.getBytes()));
         receiveAndPrintInConsole(inFromServer);
 
         // Send Base64-encoded password
-        sendAndPrintInConsole(outToServer, Base64.getEncoder().encodeToString(config.Password.getBytes()));
+        sendAndPrintInConsole(outToServer, Base64.getEncoder().encodeToString(config.password.getBytes()));
         String authResponse = receiveAndPrintInConsole(inFromServer);
 
         // pass sender via SMTP
-        sendAndPrintInConsole(outToServer, "MAIL FROM:<" + config.SenderAddress + ">");
+        sendAndPrintInConsole(outToServer, "MAIL FROM:<" + config.senderAddress + ">");
         receiveAndPrintInConsole(inFromServer);
 
         // pass recipient via SMTP
@@ -69,19 +68,19 @@ public class MailFile {
         receiveAndPrintInConsole(inFromServer);
 
         // Email headers and body
-        sendAndPrintInConsole(outToServer,"From: " + config.SenderAddress);
-        sendAndPrintInConsole(outToServer,"To: " + recipient);
-        sendAndPrintInConsole(outToServer,"Subject: " + config.Subject);
+        sendAndPrintInConsole(outToServer, "From: " + config.senderAddress);
+        sendAndPrintInConsole(outToServer, "To: " + recipient);
+        sendAndPrintInConsole(outToServer, "Subject: " + config.subject);
         sendAndPrintInConsole(outToServer, "MIME-Version: 1.0");
         sendAndPrintInConsole(outToServer, "Content-Type: multipart/mixed; boundary=\"boundaryHAW\"");
-        sendAndPrintInConsole(outToServer,null); // Sends CRLF
+        sendAndPrintInConsole(outToServer, ""); // Sends CRLF
         //outToServer.writeBytes(CRLF);
 
         sendAndPrintInConsole(outToServer, "--boundaryHAW");
         sendAndPrintInConsole(outToServer, "Content-Type: text/plain; charset=\"utf-8\"");
         sendAndPrintInConsole(outToServer, "Content-Transfer-Encoding: 7bit");
         sendAndPrintInConsole(outToServer, "");
-        sendAndPrintInConsole(outToServer, config.Body);
+        sendAndPrintInConsole(outToServer, config.body);
         sendAndPrintInConsole(outToServer, "");
 
         // File attachment
@@ -115,13 +114,13 @@ public class MailFile {
         properties.load(reader);
 
         Config config = new Config();
-        config.Hostname = properties.getProperty("SMTP_ADDRESS");
-        config.SenderAddress = properties.getProperty("SENDER_ADDRESS");
-        config.UserAccount = properties.getProperty("USER_ACCOUNT");
-        config.Password = properties.getProperty("PASSWORD");
-        config.Port = Integer.parseInt(properties.getProperty("SMTP_PORT"));
-        config.Subject = properties.getProperty("SUBJECT");
-        config.Body = properties.getProperty("BODY");
+        config.hostname = properties.getProperty("SMTP_ADDRESS");
+        config.senderAddress = properties.getProperty("SENDER_ADDRESS");
+        config.userAccount = properties.getProperty("USER_ACCOUNT");
+        config.password = properties.getProperty("PASSWORD");
+        config.port = Integer.parseInt(properties.getProperty("SMTP_PORT"));
+        config.subject = properties.getProperty("SUBJECT");
+        config.body = properties.getProperty("BODY");
         return config;
     }
 

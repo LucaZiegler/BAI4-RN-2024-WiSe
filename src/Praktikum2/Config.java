@@ -1,11 +1,11 @@
 package Praktikum2;
 
 public class Config {
-    public String Hostname;
-    public String SenderAddress;
-    public String UserAccount;
-    public String Password;
-    public int Port;
-    public String Subject;
-    public String Body;
+    public String hostname;
+    public String senderAddress;
+    public String userAccount;
+    public String password;
+    public int port;
+    public String subject;
+    public String body;
 }
