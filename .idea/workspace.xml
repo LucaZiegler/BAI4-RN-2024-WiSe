@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ade6996-73a0-4344-9e78-97a46c3e8798" name="Changes" comment="Configuration is now working">
+    <list default="true" id="9ade6996-73a0-4344-9e78-97a46c3e8798" name="Changes" comment="Added Aufgabe 3 test results">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -37,7 +37,9 @@
     "Application.RN_Praktikum2.executor": "Debug",
     "Application.RN_Praktikum3_Client.executor": "Debug",
     "Application.RN_Praktikum3_Client_Test2.executor": "Debug",
+    "Application.RN_Praktikum3_Client_Test3.1.executor": "Run",
     "Application.RN_Praktikum3_Client_Test3.2.executor": "Run",
+    "Application.RN_Praktikum3_Client_Test3.3.executor": "Debug",
     "Application.RN_Praktikum3_Client_Test3.executor": "Debug",
     "Application.RN_Praktikum3_Client_Test4.executor": "Debug",
     "Application.RN_Praktikum3_Server.executor": "Run",
@@ -62,7 +64,7 @@
       <recent name="C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RN_Praktikum3_Client_Test3.2">
+  <component name="RunManager" selected="Compound.RN_Praktikum3_All">
     <configuration name="RN_Praktikum3_Client_Test2.1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Praktikum3.RFTClient" />
       <module name="BAI4-RN-2024-WiSe" />
@@ -90,7 +92,7 @@
     <configuration name="RN_Praktikum3_Client_Test3.1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Praktikum3.RFTClient" />
       <module name="BAI4-RN-2024-WiSe" />
-      <option name="PROGRAM_PARAMETERS" value="localhost C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDataLarge.mp4 C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDataLarge_dest.mp4 8000 100000 true true" />
+      <option name="PROGRAM_PARAMETERS" value="localhost C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDataLarge.mp4 C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDataLarge_dest.mp4 3500 100000 false false" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -98,7 +100,15 @@
     <configuration name="RN_Praktikum3_Client_Test3.2" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Praktikum3.RFTClient" />
       <module name="BAI4-RN-2024-WiSe" />
-      <option name="PROGRAM_PARAMETERS" value="localhost $PROJECT_DIR$/src/Praktikum3/RFTDataLarge.mp4 $PROJECT_DIR$/src/Praktikum3/RFTDataLarge.mp4 400000 100000 true true" />
+      <option name="PROGRAM_PARAMETERS" value="localhost C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDataLarge.mp4 C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDataLarge_dest.mp4 300000 100000 false false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RN_Praktikum3_Client_Test3.3" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Praktikum3.RFTClient" />
+      <module name="BAI4-RN-2024-WiSe" />
+      <option name="PROGRAM_PARAMETERS" value="localhost C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDataLarge.mp4 C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDataLarge_dest.mp4 3000 5 true false" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -111,7 +121,7 @@
       </method>
     </configuration>
     <configuration name="RN_Praktikum3_All" type="CompoundRunConfigurationType">
-      <toRun name="RN_Praktikum3_Client_Test3.2" type="Application" />
+      <toRun name="RN_Praktikum3_Client_Test3.1" type="Application" />
       <toRun name="RN_Praktikum3_Server" type="Application" />
       <method v="2" />
     </configuration>
@@ -121,6 +131,7 @@
       <item itemvalue="Application.RN_Praktikum3_Client_Test2.3" />
       <item itemvalue="Application.RN_Praktikum3_Client_Test3.1" />
       <item itemvalue="Application.RN_Praktikum3_Client_Test3.2" />
+      <item itemvalue="Application.RN_Praktikum3_Client_Test3.3" />
       <item itemvalue="Application.RN_Praktikum3_Server" />
       <item itemvalue="Application.RN_Praktikum2" />
       <item itemvalue="Compound.RN_Praktikum3_All" />
@@ -146,7 +157,8 @@
       <workItem from="1732615264940" duration="1392000" />
       <workItem from="1733919379294" duration="1387000" />
       <workItem from="1734091866438" duration="4000" />
-      <workItem from="1734359987974" duration="5318000" />
+      <workItem from="1734359987974" duration="6112000" />
+      <workItem from="1734366165067" duration="850000" />
     </task>
     <task id="LOCAL-00001" summary="- Added attachment feature">
       <option name="closed" value="true" />
@@ -196,7 +208,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734363875497</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added Aufgabe 3 test results">
+      <option name="closed" value="true" />
+      <created>1734365429916</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1734365429916</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added Aufgabe 3 test results">
+      <option name="closed" value="true" />
+      <created>1734365478580</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1734365478580</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,6 +246,7 @@
     <MESSAGE value="Imported given files from Hübner" />
     <MESSAGE value="Updated gitignore" />
     <MESSAGE value="Configuration is now working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Configuration is now working" />
+    <MESSAGE value="Added Aufgabe 3 test results" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Aufgabe 3 test results" />
   </component>
 </project>
