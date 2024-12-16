@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ade6996-73a0-4344-9e78-97a46c3e8798" name="Changes" comment="Updated gitignore">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Praktikum3/RFTClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Praktikum3/RFTClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +65,7 @@
     <configuration name="RN_Praktikum3_Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Praktikum3.RFTClient" />
       <module name="BAI4-RN-2024-WiSe" />
+      <option name="PROGRAM_PARAMETERS" value="localhost C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDatasmall.jpg C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDatasmall_dest.jpg 10000 1000 false true" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -105,7 +109,7 @@
       <workItem from="1732615264940" duration="1392000" />
       <workItem from="1733919379294" duration="1387000" />
       <workItem from="1734091866438" duration="4000" />
-      <workItem from="1734359987974" duration="1293000" />
+      <workItem from="1734359987974" duration="3819000" />
     </task>
     <task id="LOCAL-00001" summary="- Added attachment feature">
       <option name="closed" value="true" />
@@ -139,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734361206439</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Updated gitignore">
+      <option name="closed" value="true" />
+      <created>1734361309007</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1734361309007</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,11 +170,6 @@
           <url>file://$PROJECT_DIR$/src/Praktikum2/MailFile.java</url>
           <line>13</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Praktikum3/RFTClient.java</url>
-          <line>247</line>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

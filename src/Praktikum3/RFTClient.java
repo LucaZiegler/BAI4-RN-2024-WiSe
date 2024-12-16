@@ -245,13 +245,15 @@ public class RFTClient extends Thread {
     }
 
     public static void main(String[] argv) throws Exception {
+        Thread.sleep(3000);
         if (argv.length < 7) {
             System.out.println(" RFTClient - Filetransfer zu einem Server\n Argumente:\n"
                     + "    1 Hostname des Servers\n"
                     + "    2 Quellpfad (inkl. Dateiname) der zu sendenden lokalen Datei\n"
                     + "    3 Zielpfad (inkl. Dateiname) der zu empfangenden Datei (falls bereits vorhanden, wird die Datei ueberschrieben)\n"
                     + "    4 Window Size (Sendepuffergroesse = Empfangspuffergroesse) in Anzahl Bytes\n"
-                    + "    5 Fehlerrate zur Auswertung fuer den Server\n" + "    6 FastRetransmitMode (true/false)\n"
+                    + "    5 Fehlerrate zur Auswertung fuer den Server\n"
+                    + "    6 FastRetransmitMode (true/false)\n"
                     + "    7 Testoutput-Mode (true/false)\n");
 
         } else {
