@@ -55,7 +55,7 @@ public class RFT_Timer extends Thread {
                     /* Timeout: Perform task if not cancelled */
                     if (!taskIsCancelled) {
                         timeoutCounter++;
-                        myRFTC.testOut("------ Timeout detected!");
+                        myRFTC.testOut("------ Timeout #" + timeoutCounter + " detected!");
                         myRFTC.timeoutTask();
                     }
                 }
