@@ -37,9 +37,10 @@
     "Application.RN_Praktikum2.executor": "Debug",
     "Application.RN_Praktikum3_Client.executor": "Debug",
     "Application.RN_Praktikum3_Client_Test2.executor": "Debug",
+    "Application.RN_Praktikum3_Client_Test3.2.executor": "Run",
     "Application.RN_Praktikum3_Client_Test3.executor": "Debug",
     "Application.RN_Praktikum3_Client_Test4.executor": "Debug",
-    "Application.RN_Praktikum3_Server.executor": "Debug",
+    "Application.RN_Praktikum3_Server.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -61,8 +62,8 @@
       <recent name="C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3" />
     </key>
   </component>
-  <component name="RunManager" selected="Compound.RN_Praktikum3_All">
-    <configuration name="RN_Praktikum3_Client_Test1" type="Application" factoryName="Application">
+  <component name="RunManager" selected="Application.RN_Praktikum3_Client_Test3.2">
+    <configuration name="RN_Praktikum3_Client_Test2.1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Praktikum3.RFTClient" />
       <module name="BAI4-RN-2024-WiSe" />
       <option name="PROGRAM_PARAMETERS" value="localhost C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDatasmall.jpg C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDatasmall_dest.jpg 10000 1000 false true" />
@@ -70,7 +71,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RN_Praktikum3_Client_Test2" type="Application" factoryName="Application">
+    <configuration name="RN_Praktikum3_Client_Test2.2" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Praktikum3.RFTClient" />
       <module name="BAI4-RN-2024-WiSe" />
       <option name="PROGRAM_PARAMETERS" value="localhost C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDatasmall.jpg C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDatasmall_dest.jpg 10000 10 false true" />
@@ -78,7 +79,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RN_Praktikum3_Client_Test3" type="Application" factoryName="Application">
+    <configuration name="RN_Praktikum3_Client_Test2.3" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Praktikum3.RFTClient" />
       <module name="BAI4-RN-2024-WiSe" />
       <option name="PROGRAM_PARAMETERS" value="localhost C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDatasmall.jpg C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDatasmall_dest.jpg 10000 10 true true" />
@@ -86,10 +87,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RN_Praktikum3_Client_Test4" type="Application" factoryName="Application">
+    <configuration name="RN_Praktikum3_Client_Test3.1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Praktikum3.RFTClient" />
       <module name="BAI4-RN-2024-WiSe" />
       <option name="PROGRAM_PARAMETERS" value="localhost C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDataLarge.mp4 C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3\RFTDataLarge_dest.mp4 8000 100000 true true" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RN_Praktikum3_Client_Test3.2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Praktikum3.RFTClient" />
+      <module name="BAI4-RN-2024-WiSe" />
+      <option name="PROGRAM_PARAMETERS" value="localhost $PROJECT_DIR$/src/Praktikum3/RFTDataLarge.mp4 $PROJECT_DIR$/src/Praktikum3/RFTDataLarge.mp4 400000 100000 true true" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -102,15 +111,16 @@
       </method>
     </configuration>
     <configuration name="RN_Praktikum3_All" type="CompoundRunConfigurationType">
-      <toRun name="RN_Praktikum3_Client_Test4" type="Application" />
+      <toRun name="RN_Praktikum3_Client_Test3.2" type="Application" />
       <toRun name="RN_Praktikum3_Server" type="Application" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.RN_Praktikum3_Client_Test1" />
-      <item itemvalue="Application.RN_Praktikum3_Client_Test2" />
-      <item itemvalue="Application.RN_Praktikum3_Client_Test3" />
-      <item itemvalue="Application.RN_Praktikum3_Client_Test4" />
+      <item itemvalue="Application.RN_Praktikum3_Client_Test2.1" />
+      <item itemvalue="Application.RN_Praktikum3_Client_Test2.2" />
+      <item itemvalue="Application.RN_Praktikum3_Client_Test2.3" />
+      <item itemvalue="Application.RN_Praktikum3_Client_Test3.1" />
+      <item itemvalue="Application.RN_Praktikum3_Client_Test3.2" />
       <item itemvalue="Application.RN_Praktikum3_Server" />
       <item itemvalue="Application.RN_Praktikum2" />
       <item itemvalue="Compound.RN_Praktikum3_All" />
