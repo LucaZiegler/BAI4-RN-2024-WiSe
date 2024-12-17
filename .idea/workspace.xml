@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ade6996-73a0-4344-9e78-97a46c3e8798" name="Changes" comment="Added Aufgabe 3 test results">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="cffc1a75-c6be-4d42-ba28-18d7663335df" name="Changes" comment="Updated test results">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +20,15 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="2e75bb87b95cebd2f7f2cc4954e3b176753f9798" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -31,34 +38,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.MailFile.executor": "Debug",
-    "Application.RN_Praktikum2.executor": "Debug",
-    "Application.RN_Praktikum3_Client.executor": "Debug",
-    "Application.RN_Praktikum3_Client_Test2.executor": "Debug",
-    "Application.RN_Praktikum3_Client_Test3.1.executor": "Run",
-    "Application.RN_Praktikum3_Client_Test3.2.executor": "Run",
-    "Application.RN_Praktikum3_Client_Test3.3.executor": "Debug",
-    "Application.RN_Praktikum3_Client_Test3.executor": "Debug",
-    "Application.RN_Praktikum3_Client_Test4.executor": "Debug",
-    "Application.RN_Praktikum3_Server.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MailFile.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.RN_Praktikum2.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.RN_Praktikum3_Client.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.RN_Praktikum3_Client_Test2.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.RN_Praktikum3_Client_Test3.1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RN_Praktikum3_Client_Test3.2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RN_Praktikum3_Client_Test3.3.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.RN_Praktikum3_Client_Test3.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.RN_Praktikum3_Client_Test4.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.RN_Praktikum3_Server.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3" />
@@ -147,7 +155,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9ade6996-73a0-4344-9e78-97a46c3e8798" name="Changes" comment="" />
+      <changelist id="cffc1a75-c6be-4d42-ba28-18d7663335df" name="Changes" comment="Added Aufgabe 3 test results" />
       <created>1732466079100</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -159,6 +167,7 @@
       <workItem from="1734091866438" duration="4000" />
       <workItem from="1734359987974" duration="6112000" />
       <workItem from="1734366165067" duration="850000" />
+      <workItem from="1734424400005" duration="10740000" />
     </task>
     <task id="LOCAL-00001" summary="- Added attachment feature">
       <option name="closed" value="true" />
@@ -224,7 +233,21 @@
       <option name="project" value="LOCAL" />
       <updated>1734365478580</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added Aufgabe 2, updated Aufgabe 3">
+      <created>1734432295715</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1734432295715</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Updated test results">
+      <created>1734439932262</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1734439932262</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,7 +258,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Space.CommitStatus.ColumnIdWidth" value="64" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -247,6 +276,8 @@
     <MESSAGE value="Updated gitignore" />
     <MESSAGE value="Configuration is now working" />
     <MESSAGE value="Added Aufgabe 3 test results" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Aufgabe 3 test results" />
+    <MESSAGE value="Added Aufgabe 2, updated Aufgabe 3" />
+    <MESSAGE value="Updated test results" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated test results" />
   </component>
 </project>
