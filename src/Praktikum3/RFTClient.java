@@ -38,7 +38,7 @@ public class RFTClient extends Thread {
 
     // Stats
     private long sampleRTTSum = 0;
-    private long sampleRTTCount = 0;
+    private long measuredRTTs = 0;
 
     public DatagramSocket clientSocket;
 
@@ -208,8 +208,8 @@ public class RFTClient extends Thread {
         /* Computes the current timeoutInterval (in nanoseconds)
          * Result: Variable timeoutInterval */
         sampleRTTSum += sampleRTT;
-        sampleRTTCount++;
-        double sampleRTTAverage = (double) sampleRTTSum / sampleRTTCount; // Folie 65: SampleRTT ändert sich dynamisch,
+        measuredRTTs++;
+        double sampleRTTAverage = (double) sampleRTTSum / measuredRTTs; // Folie 65: SampleRTT ändert sich dynamisch,
         // RTT sollte jedoch sich nur langsam ändern -> Benutzung mehrerer aktueller Messungen,
         // nicht nur den letzten Wert von SampleRTT
         if (estimatedRTT == -1) estimatedRTT = 4 * sampleRTTAverage; // = 4 Mal sampleRTT
