@@ -51,7 +51,7 @@ public class RFTClientRcvThread extends Thread {
                 /* ToDo */
                 RFTpacket sendbasePacket = myRFTC.sendBuf.getSendbasePacket();
 
-                if (sendbasePacket != null && sendbasePacket.getSeqNum() == ack.getSeqNum()) {
+                if (sendbasePacket != null && sendbasePacket.getTimestamp() > 0) {
                     // Calculate sampleRTT in nanoseconds
                     long currentTime = System.nanoTime();
                     long sampleRTT = currentTime - sendbasePacket.getTimestamp();
@@ -63,6 +63,10 @@ public class RFTClientRcvThread extends Thread {
                 // Update sendbase and remove acknowledged packets
                 sendbase = ack.getSeqNum();
                 myRFTC.sendBuf.remove(sendbase);
+                sendbasePacket = myRFTC.sendBuf.getSendbasePacket();
+                if (sendbasePacket != null) {
+                    myRFTC.rft_timer.startTimer(myRFTC.timeoutInterval, true);
+                } else myRFTC.rft_timer.cancelTimer();
                 myRFTC.testOut("RcvThread: sendbase update to: " + sendbase);
             } else {
                 /* ------- Fast Retransmit ? ----- */
@@ -74,9 +78,8 @@ public class RFTClientRcvThread extends Thread {
 
                         if (dupCounter >= 3) {
                             //Trigger fast retransmit
+                            myRFTC.timeoutTask();
                             myRFTC.testOut("RcvThread: Triggering fast retransmit for seq num: " + sendbase);
-                            RFTpacket timeoutPacket = myRFTC.sendBuf.getSendbasePacket();
-                            if (timeoutPacket != null) myRFTC.sendPacket(timeoutPacket, true);
 
                             // Reset duplicate counter
                             dupCounter = 0;

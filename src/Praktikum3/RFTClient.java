@@ -194,10 +194,10 @@ public class RFTClient extends Thread {
             testOut("Timeout for packet " + seqNum);
 
             // Resend the packet
-            sendPacket(timeoutPacket, true);
+            sendPacket(timeoutPacket, false);
 
             // Restart the timer
-            rft_timer.startTimer(timeoutInterval, false);
+            rft_timer.startTimer(timeoutInterval, true);
         } else {
             rft_timer.cancelTimer();
         }
