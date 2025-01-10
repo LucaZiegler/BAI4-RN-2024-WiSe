@@ -12,10 +12,11 @@ package Praktikum4;
  *        den String in Grossbuchstaben empfangen und ausgeben
  *        Nach QUIT beenden, bei SHUTDOWN den Serverthread beenden
  */
-import java.io.*;
 
-import java.net.*;
-
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.util.Scanner;
 
 

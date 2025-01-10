@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4cbcc4a-180f-4fad-80df-431d01ed16dd" name="Changes" comment="Update stats">
-      <change afterPath="$PROJECT_DIR$/src/Praktikum4/DHCPv6Explorer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Praktikum4/UDPClient.java" afterDir="false" />
+    <list default="true" id="a4cbcc4a-180f-4fad-80df-431d01ed16dd" name="Changes" comment="Initial commit for DHCPv6Explorer">
+      <change afterPath="$PROJECT_DIR$/src/Praktikum4/NetworkExplorer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Praktikum4/DHCPv6Explorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Praktikum4/DHCPv6Explorer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +74,15 @@
       <recent name="C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.DHCPv6Explorer">
+    <configuration name="DHCPv6Explorer" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Praktikum4.DHCPv6Explorer" />
+      <module name="BAI4-RN-2024-WiSe" />
+      <option name="PROGRAM_PARAMETERS" value="22" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RN_Praktikum3_Client_Test2.1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Praktikum3.RFTClient" />
       <module name="BAI4-RN-2024-WiSe" />
@@ -144,6 +152,7 @@
       <item itemvalue="Application.RN_Praktikum3_Client_Test3.3" />
       <item itemvalue="Application.RN_Praktikum3_Server" />
       <item itemvalue="Application.RN_Praktikum2" />
+      <item itemvalue="Application.DHCPv6Explorer" />
       <item itemvalue="Compound.RN_Praktikum3_All" />
     </list>
   </component>
@@ -260,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734443822315</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Initial commit for DHCPv6Explorer">
+      <created>1736530793321</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1736530793321</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,6 +308,7 @@
     <MESSAGE value="Added Aufgabe 2, updated Aufgabe 3" />
     <MESSAGE value="Updated test results" />
     <MESSAGE value="Update stats" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update stats" />
+    <MESSAGE value="Initial commit for DHCPv6Explorer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit for DHCPv6Explorer" />
   </component>
 </project>
