@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4cbcc4a-180f-4fad-80df-431d01ed16dd" name="Changes" comment="Updated test results file" />
+    <list default="true" id="a4cbcc4a-180f-4fad-80df-431d01ed16dd" name="Changes" comment="Update stats">
+      <change afterPath="$PROJECT_DIR$/src/Praktikum4/DHCPv6Explorer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Praktikum4/UDPClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,7 +74,7 @@
       <recent name="C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3" />
     </key>
   </component>
-  <component name="RunManager" selected="Compound.RN_Praktikum3_All">
+  <component name="RunManager">
     <configuration name="RN_Praktikum3_Client_Test2.1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Praktikum3.RFTClient" />
       <module name="BAI4-RN-2024-WiSe" />
@@ -153,7 +157,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cffc1a75-c6be-4d42-ba28-18d7663335df" name="Changes" comment="Added Aufgabe 3 test results" />
+      <changelist id="a4cbcc4a-180f-4fad-80df-431d01ed16dd" name="Changes" comment="Update stats" />
       <created>1732466079100</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -166,6 +170,10 @@
       <workItem from="1734359987974" duration="6112000" />
       <workItem from="1734366165067" duration="850000" />
       <workItem from="1734424400005" duration="10740000" />
+      <workItem from="1734878181467" duration="17000" />
+      <workItem from="1735899439099" duration="664000" />
+      <workItem from="1735927394997" duration="3000" />
+      <workItem from="1736525540919" duration="4214000" />
     </task>
     <task id="LOCAL-00001" summary="- Added attachment feature">
       <option name="closed" value="true" />
@@ -245,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734439932262</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Update stats">
+      <created>1734443822315</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1734443822315</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,6 +291,7 @@
     <MESSAGE value="Added Aufgabe 3 test results" />
     <MESSAGE value="Added Aufgabe 2, updated Aufgabe 3" />
     <MESSAGE value="Updated test results" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated test results" />
+    <MESSAGE value="Update stats" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update stats" />
   </component>
 </project>
