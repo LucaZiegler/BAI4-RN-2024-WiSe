@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4cbcc4a-180f-4fad-80df-431d01ed16dd" name="Changes" comment="Initial commit for DHCPv6Explorer">
-      <change afterPath="$PROJECT_DIR$/src/Praktikum4/NetworkExplorer.java" afterDir="false" />
+    <list default="true" id="a4cbcc4a-180f-4fad-80df-431d01ed16dd" name="Changes" comment="Minor changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Praktikum4/DHCPv6Explorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Praktikum4/DHCPv6Explorer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Praktikum4/NetworkExplorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Praktikum4/NetworkExplorer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Praktikum4/UDPClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Praktikum4/UDPClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,11 +75,11 @@
       <recent name="C:\Users\lucaz\IdeaProjects\v3\BAI4-RN-2024-WiSe\src\Praktikum3" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DHCPv6Explorer">
+  <component name="RunManager">
     <configuration name="DHCPv6Explorer" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Praktikum4.DHCPv6Explorer" />
       <module name="BAI4-RN-2024-WiSe" />
-      <option name="PROGRAM_PARAMETERS" value="22" />
+      <option name="PROGRAM_PARAMETERS" value="23" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -183,6 +184,8 @@
       <workItem from="1735899439099" duration="664000" />
       <workItem from="1735927394997" duration="3000" />
       <workItem from="1736525540919" duration="4214000" />
+      <workItem from="1736698139301" duration="62000" />
+      <workItem from="1737286902197" duration="4941000" />
     </task>
     <task id="LOCAL-00001" summary="- Added attachment feature">
       <option name="closed" value="true" />
@@ -276,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1736530793321</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Minor changes">
+      <created>1736531597404</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1736531597404</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,6 +319,7 @@
     <MESSAGE value="Updated test results" />
     <MESSAGE value="Update stats" />
     <MESSAGE value="Initial commit for DHCPv6Explorer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit for DHCPv6Explorer" />
+    <MESSAGE value="Minor changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor changes" />
   </component>
 </project>

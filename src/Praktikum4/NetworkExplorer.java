@@ -3,14 +3,15 @@ package Praktikum4;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 
 public class NetworkExplorer {
     public static void main(String[] args) throws SocketException {
-        showNetwork(); // look for your IPv6-Address in the results and use it as args[0] in DHCPv6Explorer.main()
+        // look for your IPv6-Address in the results and use the corresponding Scope ID (Interface ID) as args[0]
+        // and Hardware (LAN) Address as args[1] in DHCPv6Explorer.main()
+        showNetwork();
     }
 
     private static void showNetwork() throws SocketException {

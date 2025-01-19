@@ -40,7 +40,6 @@ public class UDPClient {
     /* Client starten. Ende, wenn quit eingegeben wurde */
     public void startJob() {
         Scanner inFromUser;
-
         String sentence;
         String modifiedSentence;
 
