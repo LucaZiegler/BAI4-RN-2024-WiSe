@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ade6996-73a0-4344-9e78-97a46c3e8798" name="Changes" comment="Fixed the project.&#10;Created Main.java for Praktikum 4">
+    <list default="true" id="9ade6996-73a0-4344-9e78-97a46c3e8798" name="Changes" comment="Migrated static classes to object oriented classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Praktikum4/DHCPv6Explorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Praktikum4/DHCPv6Explorer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Praktikum4/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Praktikum4/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Praktikum4/NetworkExplorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Praktikum4/NetworkExplorer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Praktikum4/UDPClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Praktikum4/UDPClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737382916494</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Migrated static classes to object oriented classes">
+      <option name="closed" value="true" />
+      <created>1737383626115</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1737383626115</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,14 +235,15 @@
     <MESSAGE value="Configuration is now working" />
     <MESSAGE value="Added Aufgabe 3 test results" />
     <MESSAGE value="Fixed the project.&#10;Created Main.java for Praktikum 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the project.&#10;Created Main.java for Praktikum 4" />
+    <MESSAGE value="Migrated static classes to object oriented classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated static classes to object oriented classes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Praktikum4/Main.java</url>
-          <line>11</line>
+          <line>9</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

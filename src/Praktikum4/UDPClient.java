@@ -21,7 +21,7 @@ import java.util.Scanner;
 
 
 public class UDPClient {
-    public final int SERVER_PORT = 9876;
+    private int PORT = 0;
     public final String HOSTNAME = "localhost";
     public final int BUFFER_SIZE = 1024;
     public final String CHARSET = "IBM-850"; // "UTF-8"
@@ -32,13 +32,12 @@ public class UDPClient {
     private boolean serviceRequested = true;
     public InetAddress SERVER_IP_ADDRESS;
 
-    public static void main(String[] args) {
-        UDPClient myClient = new UDPClient();
-        myClient.startJob();
+    public UDPClient(int port) {
+        PORT = port;
     }
 
     /* Client starten. Ende, wenn quit eingegeben wurde */
-    public void startJob() {
+    public void run() {
         Scanner inFromUser;
         String sentence;
         String modifiedSentence;
@@ -51,52 +50,25 @@ public class UDPClient {
              * Socket wird an irgendeinen freien (Quell-)Port gebunden, da kein Port angegeben */
             clientSocket = new DatagramSocket();
 
-            /* Konsolenstream (Standardeingabe) initialisieren */
-            inFromUser = new Scanner(System.in, CHARSET);
 
-            while (serviceRequested) {
-                System.err.println("ENTER UDP-DATA: ");
-                /* String vom Benutzer (Konsoleneingabe) holen */
-                sentence = inFromUser.nextLine();
-
-                /* Test, ob Client beendet werden soll */
-                if (sentence.startsWith("quit")) {
-                    serviceRequested = false;
-                } else {
-
-                    /* Sende den String als UDP-Paket zum Server */
-                    writeToServer(sentence);
-
-                    /* Modifizierten String vom Server empfangen */
-                    modifiedSentence = readFromServer();
-                }
-            }
-
-            /* Socket schliessen (freigeben)*/
-            clientSocket.close();
         } catch (IOException e) {
             System.err.println("Connection aborted by server!");
         }
 
-        System.err.println("UDP Client stopped!");
     }
 
-    private void writeToServer(String sendString) throws IOException {
-        /* Sende den String als UDP-Paket zum Server */
-
-        /* String in Byte-Array umwandeln */
-        byte[] sendData = sendString.getBytes(CHARSET);
+    public void writeToServer(byte[] data) throws IOException {
 
         /* Paket erzeugen mit Server-IP und Server-Zielport */
-        DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length,
-                SERVER_IP_ADDRESS, SERVER_PORT);
+        DatagramPacket sendPacket = new DatagramPacket(data, data.length,
+                SERVER_IP_ADDRESS, PORT);
         /* Senden des Pakets */
         clientSocket.send(sendPacket);
 
-        System.err.println("UDP Client has sent the message: " + sendString);
+        System.err.println("UDP Client has sent the message");
     }
 
-    private String readFromServer() throws IOException {
+    public String readFromServer() throws IOException {
         /* Liefere den naechsten String vom Server */
         String receiveString = "";
 
