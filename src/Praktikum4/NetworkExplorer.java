@@ -1,14 +1,13 @@
 package Praktikum4;
 
-import java.net.InterfaceAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
+import java.net.*;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 
 public class NetworkExplorer {
-    public void showNetwork() throws SocketException {
+    public void showNetwork() throws SocketException, UnknownHostException {
+
         /* Netzwerk-Infos fuer alle Interfaces ausgeben */
         Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
         while (en.hasMoreElements()) {
@@ -27,6 +26,22 @@ public class NetworkExplorer {
                         .println(" Adress = " + ia.getAddress() + " with Prefix-Length " + ia.getNetworkPrefixLength());
             }
         }
+    }
+
+    public NetworkInterface getDefaultNetworkInterface() throws UnknownHostException, SocketException {
+        InetAddress myAddr = InetAddress.getLocalHost();
+        Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
+        while (en.hasMoreElements()) {
+            NetworkInterface networkInterface = en.nextElement();
+            Enumeration<InetAddress> inAddrs = networkInterface.getInetAddresses();
+            while (inAddrs.hasMoreElements()) {
+                InetAddress inAddr = inAddrs.nextElement();
+                if (inAddr.equals(myAddr)) {
+                    return networkInterface;
+                }
+            }
+        }
+        return null;
     }
 
     public String byteArraytoHexString(byte[] byteArray) {

@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ade6996-73a0-4344-9e78-97a46c3e8798" name="Changes" comment="Added Aufgabe 3 test results">
-      <change afterPath="$PROJECT_DIR$/src/Praktikum4/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9ade6996-73a0-4344-9e78-97a46c3e8798" name="Changes" comment="Fixed the project.&#10;Created Main.java for Praktikum 4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Praktikum4/DHCPv6Explorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Praktikum4/DHCPv6Explorer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Praktikum4/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Praktikum4/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Praktikum4/NetworkExplorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Praktikum4/NetworkExplorer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +36,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.MailFile.executor": "Debug",
+    "Application.Praktikum4.executor": "Debug",
     "Application.RN_Praktikum2.executor": "Debug",
     "Application.RN_Praktikum3_Client.executor": "Debug",
     "Application.RN_Praktikum3_Client_Test2.2.executor": "Run",
@@ -183,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734367100434</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Fixed the project.&#10;Created Main.java for Praktikum 4">
+      <option name="closed" value="true" />
+      <created>1737382916494</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1737382916494</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,14 +226,15 @@
     <MESSAGE value="Updated gitignore" />
     <MESSAGE value="Configuration is now working" />
     <MESSAGE value="Added Aufgabe 3 test results" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Aufgabe 3 test results" />
+    <MESSAGE value="Fixed the project.&#10;Created Main.java for Praktikum 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the project.&#10;Created Main.java for Praktikum 4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Praktikum4/Main.java</url>
-          <line>8</line>
+          <line>11</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
