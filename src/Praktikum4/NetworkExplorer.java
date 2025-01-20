@@ -8,13 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class NetworkExplorer {
-    public static void main(String[] args) throws SocketException {
-        // look for your IPv6-Address in the results and use the corresponding Scope ID (Interface ID) as args[0]
-        // and Hardware (LAN) Address as args[1] in DHCPv6Explorer.main()
-        showNetwork();
-    }
-
-    private static void showNetwork() throws SocketException {
+    public void showNetwork() throws SocketException {
         /* Netzwerk-Infos fuer alle Interfaces ausgeben */
         Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
         while (en.hasMoreElements()) {
@@ -35,7 +29,7 @@ public class NetworkExplorer {
         }
     }
 
-    private static String byteArraytoHexString(byte[] byteArray) {
+    public String byteArraytoHexString(byte[] byteArray) {
         /* Konvertiere das Byte-Array in einen String mit Hex-Ziffern */
         StringBuilder hex = new StringBuilder();
         if (byteArray != null) {
