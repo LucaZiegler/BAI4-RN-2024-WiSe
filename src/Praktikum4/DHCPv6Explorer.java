@@ -10,7 +10,7 @@ public class DHCPv6Explorer { // Port 546
     private final String _hardwareAddress;
 
     public DHCPv6Explorer(int interfaceId, String hardwareAddress) throws UnknownHostException {
-        _inetAddress = Inet6Address.getByAddress("", hexStringtoByteArray(All_DHCP_RELAY_AGENTS_AND_SERVERS), interfaceId);
+        _inetAddress = Inet6Address.getByAddress("", ServiceCode.hexStringtoByteArray(All_DHCP_RELAY_AGENTS_AND_SERVERS), interfaceId);
 
         this._hardwareAddress = hardwareAddress;
     }
@@ -29,7 +29,7 @@ public class DHCPv6Explorer { // Port 546
         message.append(_hardwareAddress);
 
         String solicitHex = message.toString();
-        byte[] solicitData = hexStringtoByteArray(solicitHex);
+        byte[] solicitData = ServiceCode.hexStringtoByteArray(solicitHex);
 
         //TODO: send the request
         try (DatagramSocket clientSocket = new DatagramSocket(null)) {
@@ -69,7 +69,7 @@ public class DHCPv6Explorer { // Port 546
             byte[] respData = new byte[receivePacket.getLength()];
             System.arraycopy(buf, 0, respData, 0, receivePacket.getLength());
 
-            String respHex = /*ServiceCode.byteArraytoHexString(respData)*/"-";
+            String respHex = ServiceCode.byteArraytoHexString(respData);
 
             System.out.println("[Empfangenes Advertise] von " +
                     receivePacket.getAddress() + ":" +
@@ -84,17 +84,6 @@ public class DHCPv6Explorer { // Port 546
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private static byte[] hexStringtoByteArray(String hex) {
-        /* Konvertiere den String mit Hex-Ziffern in ein Byte-Array */
-        byte[] val = new byte[hex.length() / 2];
-        for (int i = 0; i < val.length; i++) {
-            int index = i * 2;
-            int num = Integer.parseInt(hex.substring(index, index + 2), 16);
-            val[i] = (byte) num;
-        }
-        return val;
     }
 
 }
